@@ -2,7 +2,6 @@ import io.spring.gradle.dependencymanagement.dsl.DependencyManagementExtension
 import org.stonehenge.build.Versions
 
 plugins {
-    id("org.springframework.boot") apply false
     id("io.spring.dependency-management")
 }
 
