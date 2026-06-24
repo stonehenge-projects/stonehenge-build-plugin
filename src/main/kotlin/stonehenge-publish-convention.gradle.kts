@@ -27,7 +27,7 @@ publishing {
                     developer {
                         id.set("BuDong-Fei")
                         name.set("BuDong")
-                        email.set("budong.fei@hotmail.com")
+                        email.set("budong.fei@icloud.com")
                     }
                 }
                 scm {
