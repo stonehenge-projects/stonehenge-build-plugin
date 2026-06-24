@@ -23,5 +23,13 @@ configure<DependencyManagementExtension> {
         dependency("org.slf4j:log4j-over-slf4j:${Versions.SLF4J}")
         dependency("com.clickhouse:clickhouse-jdbc:${Versions.CLICKHOUSE_JDBC}")
         dependency("org.redisson:redisson:${Versions.REDISSON}")
+        dependency("org.apache.curator:curator-framework:${Versions.CURATOR}")
+        dependency("org.apache.curator:curator-recipes:${Versions.CURATOR}")
+        dependency("org.apache.curator:curator-client:${Versions.CURATOR}")
+        dependency("io.etcd:jetcd-core:${Versions.JETCD}")
+        dependency("org.openjdk.jmh:jmh-core:${Versions.JMH}")
+        dependency("org.openjdk.jmh:jmh-generator-annprocess:${Versions.JMH}")
+        // v9 作为默认管理版本；需要 v8 的模块用 version { strictly(...) } 覆盖
+        dependency("co.elastic.clients:elasticsearch-java:${Versions.ELASTICSEARCH_JAVA_V9}")
     }
 }
