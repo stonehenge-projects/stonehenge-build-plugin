@@ -1,0 +1,46 @@
+[versions]
+springBoot = "4.0.6"
+springDependencyManagement = "1.1.7"
+stonehengeBootDependencies = "1.0.0-release"
+
+[libraries]
+spring-boot-starter = { module = "org.springframework.boot:spring-boot-starter" }
+spring-boot-starter-test = { module = "org.springframework.boot:spring-boot-starter-test" }
+spring-boot-configuration-processor = { module = "org.springframework.boot:spring-boot-configuration-processor" }
+spring-integration-debezium = { module = "org.springframework.integration:spring-integration-debezium" }
+spring-cloud-stream = { module = "org.springframework.cloud:spring-cloud-stream" }
+spring-cloud-starter-stream-kafka = { module = "org.springframework.cloud:spring-cloud-starter-stream-kafka" }
+spring-cloud-starter-stream-rabbit = { module = "org.springframework.cloud:spring-cloud-starter-stream-rabbit" }
+debezium-connector-mysql = { module = "io.debezium:debezium-connector-mysql" }
+debezium-connector-postgres = { module = "io.debezium:debezium-connector-postgres" }
+debezium-storage-file = { module = "io.debezium:debezium-storage-file" }
+debezium-storage-redis = { module = "io.debezium:debezium-storage-redis" }
+debezium-storage-kafka = { module = "io.debezium:debezium-storage-kafka" }
+spring-boot-starter-jdbc = { module = "org.springframework.boot:spring-boot-starter-jdbc" }
+spring-boot-starter-data-elasticsearch = { module = "org.springframework.boot:spring-boot-starter-data-elasticsearch" }
+jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind" }
+mysql-connector-j = { module = "com.mysql:mysql-connector-j" }
+clickhouse-jdbc = { module = "com.clickhouse:clickhouse-jdbc" }
+micrometer-core = { module = "io.micrometer:micrometer-core" }
+micrometer-observation = { module = "io.micrometer:micrometer-observation" }
+spring-retry = { module = "org.springframework.retry:spring-retry" }
+spring-boot-starter-validation = { module = "org.springframework.boot:spring-boot-starter-validation" }
+spring-boot-starter-actuator = { module = "org.springframework.boot:spring-boot-starter-actuator" }
+spring-boot-starter-mail = { module = "org.springframework.boot:spring-boot-starter-mail" }
+spring-boot-admin-server = { module = "de.codecentric:spring-boot-admin-starter-server" }
+spring-boot-admin-client = { module = "de.codecentric:spring-boot-admin-starter-client" }
+testcontainers-junit-jupiter = { module = "org.testcontainers:junit-jupiter" }
+testcontainers-mysql = { module = "org.testcontainers:mysql" }
+testcontainers-elasticsearch = { module = "org.testcontainers:elasticsearch" }
+testcontainers-clickhouse = { module = "org.testcontainers:clickhouse" }
+awaitility = { module = "org.awaitility:awaitility" }
+h2 = { module = "com.h2database:h2" }
+lombok = { module = "org.projectlombok:lombok" }
+spring-integration-core = { module = "org.springframework.integration:spring-integration-core" }
+spring-integration-zookeeper = { module = "org.springframework.integration:spring-integration-zookeeper" }
+redisson = { module = "org.redisson:redisson" }
+curator-recipes = { module = "org.apache.curator:curator-recipes" }
+
+[plugins]
+spring-boot = { id = "org.springframework.boot", version.ref = "springBoot" }
+spring-dependency-management = { id = "io.spring.dependency-management", version.ref = "springDependencyManagement" }
