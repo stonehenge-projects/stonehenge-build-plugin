@@ -30,6 +30,7 @@ dependencies {
     implementation(platform("de.codecentric:spring-boot-admin-dependencies:${Versions.SPRING_BOOT_ADMIN}"))
     implementation(platform("org.testcontainers:testcontainers-bom:${Versions.TESTCONTAINERS}"))
     implementation(platform("io.debezium:debezium-bom:${Versions.DEBEZIUM}"))
+    annotationProcessor(platform("org.springframework.boot:spring-boot-dependencies:${Versions.SPRING_BOOT}"))
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
     // ── Version constraints for non-BOM dependencies ───────────────────────────
