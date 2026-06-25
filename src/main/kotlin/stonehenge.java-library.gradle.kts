@@ -40,6 +40,8 @@ dependencies {
     implementation(platform("org.testcontainers:testcontainers-bom:${Versions.TESTCONTAINERS}"))
     implementation(platform("io.debezium:debezium-bom:${Versions.DEBEZIUM}"))
     annotationProcessor(platform("org.springframework.boot:spring-boot-dependencies:${Versions.SPRING_BOOT}"))
+    // Required by Gradle 9+ for JUnit Platform to discover and run tests
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
     // ── Version constraints for non-BOM dependencies ───────────────────────────
     constraints {
