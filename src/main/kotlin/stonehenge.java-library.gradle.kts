@@ -74,8 +74,7 @@ dependencies {
         implementation("com.xuxueli:xxl-job-core:${Versions.XXL_JOB}")
         implementation("com.xuxueli:xxl-sso-core:${Versions.XXL_SSO}")
         implementation("com.xuxueli:xxl-tool:${Versions.XXL_TOOL}")
-        // mybatis
-        implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:${Versions.MYBATIS_SPRING_BOOT}")
+
         // elasticjob
         implementation("org.apache.shardingsphere.elasticjob:elasticjob-api:${Versions.ELASTICJOB}")
         implementation("org.apache.shardingsphere.elasticjob:elasticjob-infra-common:${Versions.ELASTICJOB}")
