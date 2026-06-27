@@ -37,6 +37,11 @@ val guavaVersion                    = property("guava")                   as Str
 val dom4jVersion                    = property("dom4j")                   as String
 val springdocVersion                = property("springdoc")               as String
 val apolloClientVersion             = property("apolloClient")            as String
+val xxlJobVersion                   = property("xxlJob")                  as String
+val xxlSsoVersion                   = property("xxlSso")                  as String
+val xxlToolVersion                  = property("xxlTool")                 as String
+val mybatisSpringBootVersion        = property("mybatisSpringBoot")       as String
+val elasticjobVersion               = property("elasticjob")              as String
 val nexusPublishVersion             = property("nexusPublish")            as String
 
 // Generate Versions.kt so convention plugins can access versions at runtime
@@ -76,6 +81,11 @@ val generateVersions by tasks.registering {
                 const val DOM4J                          = "$dom4jVersion"
                 const val SPRINGDOC                      = "$springdocVersion"
                 const val APOLLO_CLIENT                  = "$apolloClientVersion"
+                const val XXL_JOB                        = "$xxlJobVersion"
+                const val XXL_SSO                        = "$xxlSsoVersion"
+                const val XXL_TOOL                       = "$xxlToolVersion"
+                const val MYBATIS_SPRING_BOOT            = "$mybatisSpringBootVersion"
+                const val ELASTICJOB                     = "$elasticjobVersion"
             }
         """.trimIndent())
     }
