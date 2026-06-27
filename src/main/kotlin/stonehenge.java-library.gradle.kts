@@ -60,8 +60,7 @@ dependencies {
         implementation("io.etcd:jetcd-core:${Versions.JETCD}")
         implementation("org.openjdk.jmh:jmh-core:${Versions.JMH}")
         implementation("org.openjdk.jmh:jmh-generator-annprocess:${Versions.JMH}")
-        // v9 as default; modules needing v8 override with version { strictly(...) }
-        implementation("co.elastic.clients:elasticsearch-java:${Versions.ELASTICSEARCH_JAVA_V9}")
+        annotationProcessor("org.openjdk.jmh:jmh-generator-annprocess:${Versions.JMH}")
         implementation("com.alibaba:easyexcel:${Versions.EASYEXCEL}")
         implementation("org.apache.commons:commons-lang3:${Versions.COMMONS_LANG3}")
         implementation("org.apache.commons:commons-collections4:${Versions.COMMONS_COLLECTIONS4}")
