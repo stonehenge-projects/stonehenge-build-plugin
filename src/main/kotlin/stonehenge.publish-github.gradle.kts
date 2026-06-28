@@ -20,9 +20,9 @@ publishing {
                 }
                 developers {
                     developer {
-                        id.set("BuDong-Fei")
-                        name.set("BuDong")
-                        email.set("budong.fei@icloud.com")
+                        id.set("stonehenge-projects")
+                        name.set("budong")
+                        email.set("budong.fei@protonmail.com")
                     }
                 }
                 scm {

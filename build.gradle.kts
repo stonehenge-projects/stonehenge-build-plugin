@@ -1,6 +1,7 @@
 plugins {
     `kotlin-dsl`
     `maven-publish`
+//    signing  // uncomment when publishing to Maven Central
 }
 
 group = "org.stonehenge.build"
@@ -10,106 +11,74 @@ repositories {
     mavenCentral()
 }
 
-// Read all versions from gradle.properties — single source of truth
-val springBootVersion               = property("springBoot")               as String
-val springCloudVersion              = property("springCloud")              as String
-val springBootAdminVersion          = property("springBootAdmin")          as String
-val springCloudAwsVersion           = property("springCloudAws")          as String
-val springCloudGcpVersion           = property("springCloudGcp")          as String
-val springCloudAlibabaVersion       = property("springCloudAlibaba")      as String
-val debeziumVersion                 = property("debezium")                as String
-val springIntegrationDebeziumVersion = property("springIntegrationDebezium") as String
-val logbackVersion                  = property("logback")                 as String
-val slf4jVersion                    = property("slf4j")                   as String
-val clickhouseJdbcVersion           = property("clickhouseJdbc")          as String
-val redissonVersion                 = property("redisson")                as String
-val curatorVersion                  = property("curator")                 as String
-val jetcdVersion                    = property("jetcd")                   as String
-val jmhVersion                      = property("jmh")                    as String
-val elasticsearchJavaV8Version      = property("elasticsearchJavaV8")     as String
-val elasticsearchJavaV9Version      = property("elasticsearchJavaV9")     as String
-val easyexcelVersion                = property("easyexcel")               as String
-val testcontainersVersion           = property("testcontainers")          as String
-val commonsLang3Version             = property("commonsLang3")            as String
-val commonsCollections4Version      = property("commonsCollections4")     as String
-val commonsIoVersion                = property("commonsIo")               as String
-val guavaVersion                    = property("guava")                   as String
-val dom4jVersion                    = property("dom4j")                   as String
-val springdocVersion                = property("springdoc")               as String
-val apolloClientVersion             = property("apolloClient")            as String
-val xxlJobVersion                   = property("xxlJob")                  as String
-val xxlSsoVersion                   = property("xxlSso")                  as String
-val xxlToolVersion                  = property("xxlTool")                 as String
-val mybatisSpringBootVersion        = property("mybatisSpringBoot")       as String
-val elasticjobVersion               = property("elasticjob")              as String
-val nexusPublishVersion             = property("nexusPublish")            as String
-
-// Generate Versions.kt so convention plugins can access versions at runtime
-val generateVersions by tasks.registering {
-    val outputDir = layout.buildDirectory.dir("generated-sources/kotlin/org/stonehenge/build")
-    outputs.dir(outputDir)
-    doLast {
-        val file = outputDir.get().file("Versions.kt").asFile
-        file.parentFile.mkdirs()
-        file.writeText("""
-            package org.stonehenge.build
-
-            internal object Versions {
-                const val SPRING_BOOT                    = "$springBootVersion"
-                const val SPRING_CLOUD                   = "$springCloudVersion"
-                const val SPRING_BOOT_ADMIN              = "$springBootAdminVersion"
-                const val SPRING_CLOUD_AWS               = "$springCloudAwsVersion"
-                const val SPRING_CLOUD_GCP               = "$springCloudGcpVersion"
-                const val SPRING_CLOUD_ALIBABA           = "$springCloudAlibabaVersion"
-                const val DEBEZIUM                       = "$debeziumVersion"
-                const val SPRING_INTEGRATION_DEBEZIUM    = "$springIntegrationDebeziumVersion"
-                const val LOGBACK                        = "$logbackVersion"
-                const val SLF4J                          = "$slf4jVersion"
-                const val CLICKHOUSE_JDBC                = "$clickhouseJdbcVersion"
-                const val REDISSON                       = "$redissonVersion"
-                const val CURATOR                        = "$curatorVersion"
-                const val JETCD                          = "$jetcdVersion"
-                const val JMH                            = "$jmhVersion"
-                const val ELASTICSEARCH_JAVA_V8          = "$elasticsearchJavaV8Version"
-                const val ELASTICSEARCH_JAVA_V9          = "$elasticsearchJavaV9Version"
-                const val EASYEXCEL                      = "$easyexcelVersion"
-                const val TESTCONTAINERS                 = "$testcontainersVersion"
-                const val COMMONS_LANG3                  = "$commonsLang3Version"
-                const val COMMONS_COLLECTIONS4           = "$commonsCollections4Version"
-                const val COMMONS_IO                     = "$commonsIoVersion"
-                const val GUAVA                          = "$guavaVersion"
-                const val DOM4J                          = "$dom4jVersion"
-                const val SPRINGDOC                      = "$springdocVersion"
-                const val APOLLO_CLIENT                  = "$apolloClientVersion"
-                const val XXL_JOB                        = "$xxlJobVersion"
-                const val XXL_SSO                        = "$xxlSsoVersion"
-                const val XXL_TOOL                       = "$xxlToolVersion"
-                const val MYBATIS_SPRING_BOOT            = "$mybatisSpringBootVersion"
-                const val ELASTICJOB                     = "$elasticjobVersion"
-            }
-        """.trimIndent())
-    }
-}
-
-sourceSets.main {
-    kotlin.srcDir(layout.buildDirectory.dir("generated-sources/kotlin"))
-}
-
-tasks.compileKotlin {
-    dependsOn(generateVersions)
-}
-
 dependencies {
-    implementation("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
-    implementation("io.github.gradle-nexus:publish-plugin:$nexusPublishVersion")
+    implementation("org.springframework.boot:spring-boot-gradle-plugin:4.0.7")
+    implementation("io.github.gradle-nexus:publish-plugin:2.0.0")
 }
 
 publishing {
+    publications {
+        withType<MavenPublication> {
+            pom {
+                name.set(provider { project.name })
+                description.set(provider { project.description ?: project.name })
+                url.set("https://github.com/stonehenge-projects/stonehenge-build-plugin")
+                inceptionYear.set("2025")
+                licenses {
+                    license {
+                        name.set("Apache License, Version 2.0")
+                        url.set("https://www.apache.org/licenses/LICENSE-2.0.txt")
+                        distribution.set("repo")
+                    }
+                }
+                developers {
+                    developer {
+                        id.set("BuDong-Fei")
+                        name.set("BuDong")
+                        email.set("budong.fei@icloud.com")
+                        timezone.set("Asia/Shanghai")
+                    }
+                }
+                scm {
+                    connection.set("scm:git:git://github.com/stonehenge-projects/stonehenge-build-plugin.git")
+                    developerConnection.set("scm:git:ssh://git@github.com/stonehenge-projects/stonehenge-build-plugin.git")
+                    url.set("https://github.com/stonehenge-projects/stonehenge-build-plugin")
+                    tag.set("HEAD")
+                }
+                issueManagement {
+                    system.set("GitHub Issues")
+                    url.set("https://github.com/stonehenge-projects/stonehenge-build-plugin/issues")
+                }
+            }
+        }
+    }
     repositories {
         maven {
             name = "GitHubPackages"
             url = uri("https://maven.pkg.github.com/stonehenge-projects/stonehenge-build-plugin")
             credentials(PasswordCredentials::class)
         }
+        // Maven Central — uncomment to enable
+//        maven {
+//            name = "sonatype"
+//            url = if (version.toString().endsWith("SNAPSHOT"))
+//                uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
+//            else
+//                uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
+//            credentials {
+//                username = providers.gradleProperty("ossrhUsername").orNull
+//                password = providers.gradleProperty("ossrhPassword").orNull
+//            }
+//        }
     }
 }
+
+// Maven Central signing — uncomment together with signing plugin and sonatype repository
+//signing {
+//    val signingKey = providers.gradleProperty("signingKey")
+//    val signingPassword = providers.gradleProperty("signingPassword")
+//    if (signingKey.isPresent) {
+//        useInMemoryPgpKeys(signingKey.get(), signingPassword.orNull)
+//        sign(publishing.publications["pluginMaven"])
+//    }
+//}
